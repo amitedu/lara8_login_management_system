@@ -39,6 +39,12 @@
                                 <div>
                                     @auth
                                         <a href="{{ url('/home') }}">Home</a>
+                                        <a href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('form-logout').submit();">logout</a>
+
+                                        <form id="form-logout" action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                        </form>
                                     @else
                                         <a href="{{ route('login') }}">Log in</a>
 
