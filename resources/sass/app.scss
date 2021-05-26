@@ -11,9 +11,16 @@ body{
 
 .navbar{
     background-color: $navbar;
-    box-shadow: 0 5px 10px 0 rgba(204, 204, 204, 0.3);
     a{
         color: #fff;
+    }
+}
+
+.sub-nav{
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px 0 rgba(204, 204, 204, 0.3);
+    a{
+        color: $navbar;
     }
     margin-bottom: 40px;
 }
