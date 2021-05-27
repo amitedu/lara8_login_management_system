@@ -50,6 +50,22 @@
         </span>
         @enderror
     </div>
+
+    <!-- Password confirmation Form Input -->
+    <div class="mb-3">
+        <label for="password_confirmation" class="form-label">Password confirmation</label>
+        <input class="form-control @error('password_confirmation') is-invalid @enderror" aria-describedby="emailHelp"
+               name="password_confirmation"
+               id="password_confirmation"
+               type="password"
+               required
+        >
+        @error('password_confirmation')
+        <span class="invalid-feedback" role="alert">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
 @endisset
 
 <!-- Roles Form Input -->

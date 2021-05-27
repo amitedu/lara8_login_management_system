@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'auth.admin'])->group(function (){
     Route::resource('/users', UserController::class);
 });

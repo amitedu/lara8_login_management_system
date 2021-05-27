@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller {
 
@@ -17,7 +19,11 @@ class UserController extends Controller {
      */
     public function index()
     {
-        return view('admin.users.index', ['users' => User::paginate(10)]);
+        if (Gate::allows('is-admin')) {
+            return view('admin.users.index', ['users' => User::paginate(10)]);
+        }
+
+        dd('You do not have permission to access this page.');
     }
 
 
@@ -40,9 +46,13 @@ class UserController extends Controller {
      */
     public function store(StoreUserRequest $request)
     {
-        $validateData = $request->validated();
+        // This code is for without using Fortify Actions
+//        $validateData = $request->validated();
+//
+//        $user = User::create($validateData);
 
-        $user = User::create($validateData);
+        $newUser = new CreateNewUser();
+        $user = $newUser->create($request->except(['_token', 'roles']));
 
         $user->roles()->sync($request->roles);
         $request->session()->flash('success', 'User added successful');
