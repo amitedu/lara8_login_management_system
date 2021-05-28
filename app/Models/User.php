@@ -44,10 +44,10 @@ class User extends Authenticatable {
     ];
 
 
-    public function setPasswordAttribute($password): void
-    {
-        $this->attributes['password'] = Hash::make($password);
-    }
+//    public function setPasswordAttribute($password): void
+//    {
+//        $this->attributes['password'] = Hash::make($password);
+//    }
 
 
     public function roles(): BelongsToMany
