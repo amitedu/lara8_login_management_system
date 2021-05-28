@@ -4,7 +4,7 @@
 @section('content')
     <h1>Login</h1>
 
-    <form action="{{ route('login') }}" method="post">
+    <form action="{{ route('login') }}" method="post" class="mb-3">
     @csrf
 
     <!-- Email Form Input -->
@@ -41,4 +41,6 @@
         <button type="submit" class="btn btn-primary">Login</button>
         <a href="/" class="btn btn-secondary">Cancel</a>
     </form>
+
+    <a href="{{ route('password.request') }}">Forget Password?</a>
 @endsection
