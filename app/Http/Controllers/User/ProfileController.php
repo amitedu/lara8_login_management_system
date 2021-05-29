@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function edit()
+//    public function edit()
+//    {
+//        return view('user.profile');
+//    }
+
+    // Refactor above code
+    public function __invoke()
     {
         return view('user.profile');
     }

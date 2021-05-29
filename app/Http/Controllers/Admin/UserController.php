@@ -20,11 +20,9 @@ class UserController extends Controller {
      */
     public function index()
     {
-        if (Gate::allows('is-admin')) {
-            return view('admin.users.index', ['users' => User::paginate(10)]);
-        }
+        $this->authorize('is-admin');
 
-        dd('You do not have permission to access this page.');
+        return view('admin.users.index', ['users' => User::paginate(10)]);
     }
 
 
@@ -35,6 +33,8 @@ class UserController extends Controller {
      */
     public function create()
     {
+        $this->authorize('is-admin');
+
         return view('admin.users.create', ['roles' => Role::all()]);
     }
 
@@ -51,6 +51,8 @@ class UserController extends Controller {
 //        $validateData = $request->validated();
 //
 //        $user = User::create($validateData);
+
+        $this->authorize('is-admin');
 
         $newUser = new CreateNewUser();
         $user = $newUser->create($request->except(['_token', 'roles']));
@@ -85,6 +87,8 @@ class UserController extends Controller {
      */
     public function edit(int $id)
     {
+        $this->authorize('is-admin');
+
         return view('admin.users.edit', [
             'roles' => Role::all(),
             'user' => User::find($id)
@@ -101,6 +105,8 @@ class UserController extends Controller {
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('is-admin');
+
         $user = User::find($id);
         if ( ! $user) {
             $request->session()->flash('failed', 'User update failed');
@@ -125,6 +131,8 @@ class UserController extends Controller {
      */
     public function destroy(Request $request, int $id)
     {
+        $this->authorize('is-admin');
+
         if (User::destroy($id)) {
             $request->session()->flash('success', 'The user deleted successfully');
         }

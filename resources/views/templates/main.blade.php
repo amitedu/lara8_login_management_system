@@ -29,18 +29,18 @@
                         @if (Route::has('login'))
                             <div>
                                 @auth
-                                    <a href="{{ route('user.profile') }}" class="btn btn-primary">Profile</a>
-                                    <a href="{{ url('/logout') }}" class="btn btn-outline-info"
-                                       onclick="event.preventDefault(); document.getElementById('form-logout').submit();">logout</a>
+                                    <a href="{{ url('user/profile') }}" class="btn btn-outline-info">Profile</a>
+                                    <a href="{{ url('/logout') }}" class="btn btn-primary"
+                                       onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a>
 
                                     <form id="form-logout" action="{{ route('logout') }}" method="post">
                                         @csrf
                                     </form>
                                 @else
-                                    <a href="{{ route('login') }}">Log in</a>
+                                    <a href="{{ route('login') }}" class="btn btn-outline-secondary">Log in</a>
 
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}">Register</a>
+                                        <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
                                     @endif
                                 @endauth
                             </div>
