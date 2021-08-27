@@ -89,4 +89,4 @@
 </div>
 
 <button type="submit" class="btn btn-primary">{{ $create ?? 'Update' }}</button>
-<a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
+<a href="{{ route('admin.users.index') }}" class="">Cancel</a>
